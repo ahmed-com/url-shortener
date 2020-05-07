@@ -29,11 +29,53 @@ const Url = require('../models/Url');
 /**
  * @swagger
  *
- * /url/:id:
+ * /url:
  *   get:
- *     description: get a url by id
+ *     summary: get all urls
+ *     parameters:
+ *       - id:
+ *         description: id of the url
+ *         type: string
  *     tags:
- *       - url
+ *       - Url
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       '200':
+ *         description: get url by id
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/Url'
+ */
+router.get('/url', async (req, res, next) => {
+  try {
+    let documents = await Url.find({});
+    documents = documents.map((doc) => {
+      return doc._doc;
+    });
+    res.send({ data: documents });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json('SOMETHING WENT WRONG');
+  }
+});
+
+/**
+ * @swagger
+ *
+ * /url/{id}:
+ *   get:
+ *     summary: get a url by id
+ *     tags:
+ *       - Url
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: id of the url
  *     produces:
  *       - application/json
  *     responses:
@@ -62,18 +104,18 @@ router.get('/url/:id', async (req, res, next) => {
  *
  * /url/shorten/:
  *   post:
- *     description: Create a short url
+ *     summary: Create a short url
  *     tags:
- *       - url
+ *       - Url
  *     produces:
  *       - application/json
- *     parameters:
- *       - name: Url
- *         description: a url to shorten
- *         in: body
- *         type: string
- *         schema:
- *           $ref: '#/components/schemas/Url'
+ *     requestBody:
+ *       description: # create new shortened url
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Url'
  *     responses:
  *       '201':
  *         description: created Url
@@ -82,7 +124,7 @@ router.get('/url/:id', async (req, res, next) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: "#/components/schemas/Url"
+ *               $ref: '#/components/schemas/Url'
  */
 router.post(
   '/url/shorten',

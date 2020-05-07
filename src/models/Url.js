@@ -1,14 +1,16 @@
 const mongoose = require('mongoose');
 
+const hitSchema = new mongoose.Schema({
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 const urlSchema = new mongoose.Schema({
   _id: String,
   longUrl: String,
-  hits: [
-    {
-      type: Date,
-      default: Date.now,
-    },
-  ],
+  hits: [hitSchema],
   date: { type: Date, default: Date.now },
 });
 

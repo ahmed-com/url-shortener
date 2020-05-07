@@ -9,6 +9,7 @@ router.get('/:id', async function redirect(req, res) {
     const { id } = req.params;
     const document = await Url.findById(id);
     if (document) {
+      document.hits.push({ date: Date.now() });
       document.save().then((doc) => console.log('saved hit for doc', doc._id));
       return res.redirect(document.longUrl);
     } else {
