@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Gradebook</title>
+    <title>URL Shortener</title>
     <link
       rel="stylesheet"
       href="../assets/bootstrap-4.4.1-dist/css/bootstrap.min.css"
@@ -11,32 +11,7 @@
   <body class="bg-secondary">
     <div class="container">
       <h1 class="text-center text-light">URL Details</h1>
-      <form>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="term">Term</label>
-          </div>
-          <select name="term" id="term"></select>
-          <button
-            id="download"
-            type="button"
-            onclick="downloadExcel(this)"
-            class="btn btn-primary"
-          >
-            Download
-          </button>
-        </div>
-      </form>
-      <table class="table table-dark table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Date</th>
-            <th>Type</th>
-          </tr>
-        </thead>
-        <tbody id="target"></tbody>
-      </table>
+      <!-- Create chart here with hits,time -->
     </div>
   </body>
   <script src="../assets/jquery-3.4.1.slim.min.js"></script>
