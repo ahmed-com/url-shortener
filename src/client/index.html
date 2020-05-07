@@ -13,21 +13,17 @@
       <h1 class="text-center text-light">Url Shortener</h1>
       <form action="" enctype="multipart/form-data" method="POST">
         <div class="input-group mb-3">
-          <a class="btn btn-secondary" href="/pages/download.html"
-            >Download gradebook</a
-          >
-          <input id="excel" type="file" name="excel" />
           <div class="input-group-prepend">
-            <label class="input-group-text" for="term">Course</label>
+            <label class="input-group-text" for="term">URL</label>
           </div>
-          <select name="term" id="term" onselect="loadSessions()"></select>
+          <input type="text" name="longUrl" id="url" />
           <button
-            id="upload"
+            id="createUrl"
             type="button"
-            onclick="uploadExcel(this)"
+            onclick="createURL()"
             class="btn btn-primary"
           >
-            Upload
+            Shorten URL
           </button>
         </div>
       </form>
@@ -36,9 +32,10 @@
           <tr>
             <th>#</th>
             <th>ID</th>
+            <th>Link</th>
             <th>Long URL</th>
             <th>Hits</th>
-            <th>Date Created</th>
+            <th>Created</th>
             <th></th>
           </tr>
         </thead>
