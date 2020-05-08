@@ -17,7 +17,7 @@ async function loadUrls() {
               <td>${cur._id}</td>
               <td><a href="${shortUrl}" target="_blank">${shortUrl}</a></td>
               <td>${cur.longUrl}</td>
-              <td>${cur.hits.length}</td>
+              <td>${totalHits(cur.hits)}</td>
               <td>${new Date(cur.date).toLocaleDateString('en-US')}</td>
           </tr>`;
     return acc;
@@ -57,3 +57,12 @@ window.onload = function () {
     console.log('ran load options');
   });
 };
+
+function totalHits(hits){
+  let sum = 0;
+  hits.forEach(hit => {
+    console.log(hit)
+    sum += hit.hitCount;
+  });
+  return sum;
+}

@@ -11,8 +11,11 @@ router.get('/:id', async function redirect(req, res) {
     const document = await Url.findById(id);
     if (document) {
       res.redirect(document.longUrl);
-      setImmediate(_=> incrementHits(document));
-      return document.save().then((doc) => console.log('saved hit for doc', doc._id));
+      setImmediate(()=> {
+        incrementHits(document)
+        document.save().then((doc) => console.log('saved hit for doc', doc._id));
+      });
+      return;
     } else {
       return res.status(404).json('Not Found !');
     }
