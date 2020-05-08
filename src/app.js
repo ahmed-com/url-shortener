@@ -16,30 +16,31 @@ app.use('/api', apiRouter);
 
 app.use('/', serveStatic(__dirname + '/client'));
 
-// OpenAPI 3 docs
-app.use(
-  '/api/docs',
-  swaggerUI.serve,
-  swaggerUI.setup(
-    swaggerJsDoc({
-      swaggerDefinition: {
-        openapi: '3.0.0',
-        info: {
-          title: 'URL Shortener',
-          version: '1.0.0',
-          description: 'This is a url shortener',
-        },
-        servers: [
-          {
-            url: `${process.env.BASEURL}/api`,
-            description: 'version 1 of url shortener api',
-          },
-        ],
+const swaggerDoc = swaggerJsDoc({
+  swaggerDefinition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'URL Shortener',
+      version: '1.0.0',
+      description: 'This is a url shortener',
+    },
+    servers: [
+      {
+        url: `${process.env.BASEURL}/api`,
+        description: 'version 1 of url shortener api',
       },
-      apis: ['src/routes/*.js'],
-    })
-  )
-);
+    ],
+  },
+  apis: ['src/routes/*.js'],
+});
+
+app.use('/api/docs.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerDoc);
+});
+
+// OpenAPI 3 docs
+app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
 (async function connectDB(url) {
   try {
