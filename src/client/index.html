@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>URL Shortener</title>
+    <link
+      rel="stylesheet"
+      href="assets/bootstrap-4.4.1-dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body class="bg-secondary">
+    <div class="container">
+      <h1 class="text-center text-light">Url Shortener</h1>
+      <form action="" enctype="multipart/form-data" method="POST">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="term">URL</label>
+          </div>
+          <input type="text" name="longUrl" id="url" />
+          <button
+            id="createUrl"
+            type="button"
+            onclick="createURL()"
+            class="btn btn-primary"
+          >
+            Shorten URL
+          </button>
+        </div>
+      </form>
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>ID</th>
+            <th>Link</th>
+            <th>Long URL</th>
+            <th>Hits</th>
+            <th>Created</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="target"></tbody>
+      </table>
+    </div>
+  </body>
+  <script src="assets/jquery-3.4.1.slim.min.js"></script>
+  <script src="assets/bootstrap-4.4.1-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="scripts/main.js"></script>
+</html>
