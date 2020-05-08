@@ -61,7 +61,6 @@ window.onload = function () {
 function totalHits(hits){
   let sum = 0;
   hits.forEach(hit => {
-    console.log(hit)
     sum += hit.hitCount;
   });
   return sum;
