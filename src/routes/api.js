@@ -158,7 +158,7 @@ async function shorten(req, res, next) {
     } else {
       const _id = shortId.generate();
       const date = new Date();
-      await new Url({ _id, longUrl, date }).save();
+      await new Url({ _id, longUrl, date, hits: [] }).save();
       const shortUrl = `${baseUrl}/${_id}`;
       res.json({ longUrl, shortUrl, date });
     }
